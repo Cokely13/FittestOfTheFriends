@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Events from './Events'
+import Counter from './Counter'
+import Users from './Users'
 
 /**
  * COMPONENT
@@ -11,7 +12,8 @@ export const Home = props => {
   return (
     <div>
       <h3>Welcome, {username}</h3>
-      <Events/>
+      <Counter/>
+      <Users/>
     </div>
   )
 }

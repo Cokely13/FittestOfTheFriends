@@ -1,15 +1,48 @@
-import React, {useState} from "react";
+import React from "react";
+import { connect } from "react-redux";
+import { fetchEvents} from "../store/allEventsStore";
+import { Link } from "react-router-dom";
 
-const Events  = () => {
-  const initialState = 0
-  const [count, setCount ] = useState(initialState)
-
-  return (
-    <div>
-     <h1>{count}</h1>
-     <button onClick={()=>setCount(count + 1)}>Increment</button>
-    </div>
-  )
+export class Events extends React.Component {
+  constructor() {
+    super();
+  }
+  componentDidMount() {
+    this.props.fetchEvents();
+  }
+  render() {
+    console.log("PROPS", this.props.allEvents)
+    return (
+      <div className="container">
+        <div></div>
+        {this.props.allEvents.map((event) => {
+          console.log(event.id)
+          return (
+            <div className="event" key={event.id}>
+               <div>Events</div>
+              <Link to={`/events/${event.id}`} key={event.id}>
+                <div key={event.id}>
+                  <h1 className="name">{event.type}</h1>
+                </div>
+              </Link>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
 }
 
-export default Events;
+const mapStateToProps = (state) => {
+  return {
+    allEvents: state.allEvents,
+  };
+};
+
+const mapDispatch = (dispatch, { history }) => {
+  return {
+    fetchEvents: () => dispatch(fetchEvents()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatch)(Events);
