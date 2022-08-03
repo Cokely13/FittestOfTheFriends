@@ -2,9 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 
-const Event = db.define('event', {
-type: { type: Sequelize.STRING,
-defaultValue:'run'},
+const Result = db.define('result', {
     distance: { type: Sequelize.FLOAT,
       },
     weight: {
@@ -18,5 +16,4 @@ defaultValue:'run'},
         }})
 
 
-
-module.exports = Event
+module.exports = Result

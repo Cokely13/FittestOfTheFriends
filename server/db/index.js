@@ -4,13 +4,19 @@ const db = require('./db')
 
 const User = require('./models/User')
 const Event = require('./models/Event')
+const Result = require('./models/Result')
 
 //associations could go here!
+Event.hasMany(Result)
+User.hasMany(Result)
+Result.hasOne(Event)
+Result.hasOne(User)
 
 module.exports = {
   db,
   models: {
     User,
-    Event
+    Event,
+    Result
   },
 }
