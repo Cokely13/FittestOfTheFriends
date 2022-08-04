@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User, Event} } = require('../server/db')
+const {db, models: {User, Event, Result} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -12,14 +12,25 @@ async function seed() {
 
   //Creating Users
   const users = await Promise.all([
-    User.create({ username: 'ryan', password: 'test', admin: 'true' }),
-    User.create({ username: 'matt', password: 'test' }),
+    User.create({ username: 'ryan', id: 1, password: 'test', admin: 'true' }),
+    User.create({ username: 'matt', id: 2,  password: 'test' }),
   ])
 
   const events = await Promise.all([
-    Event.create({ type: 'run', distance: '3' }),
-    Event.create({ type: 'lift', weight: '135' }),
+    Event.create({ distance: '3' }),
+    Event.create({ distance: '5' }),
+    Event.create({ distance: '10' }),
   ])
+
+  const results = await Promise.all([
+    Result.create({ type: 'run', distance: '3', time: '21', eventId: 1, userId: 1}),
+    Result.create({ type: 'run', distance: '3', time: '22', userId: 2, eventId: 1}),
+    Result.create({ type: 'run', distance: '5', time: '40', userId: 1, eventId: 2}),
+    Result.create({ type: 'run', distance: '5', time: '42', userId: 2, eventId: 2}),
+    Result.create({ type: 'run', distance: '10', time: '58', userId: 1, eventId: 3}),
+    Result.create({ type: 'run', distance: '10', time: '60', userId: 2, eventId: 3}),
+  ])
+
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)

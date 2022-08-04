@@ -9,8 +9,8 @@ const Result = require('./models/Result')
 //associations could go here!
 Event.hasMany(Result)
 User.hasMany(Result)
-Result.hasOne(Event)
-Result.hasOne(User)
+Result.belongsTo(Event)
+Result.belongsTo(User)
 
 module.exports = {
   db,

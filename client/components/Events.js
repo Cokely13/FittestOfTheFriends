@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchEvents} from "../store/allEventsStore";
+import { fetchEvents, createEvent} from "../store/allEventsStore";
 import { Link } from "react-router-dom";
+import CreateEvent from "./CreateEvent";
 
 export class Events extends React.Component {
   constructor() {
@@ -13,6 +14,7 @@ export class Events extends React.Component {
   render() {
     console.log("PROPS", this.props.allEvents)
     return (
+      <div>
       <div className="container">
         <div></div>
         {this.props.allEvents.map((event) => {
@@ -29,6 +31,8 @@ export class Events extends React.Component {
           );
         })}
       </div>
+      <CreateEvent />
+      </div>
     );
   }
 }
@@ -42,6 +46,7 @@ const mapStateToProps = (state) => {
 const mapDispatch = (dispatch, { history }) => {
   return {
     fetchEvents: () => dispatch(fetchEvents()),
+    createEvent: () => dispatch(createEvent())
   };
 };
 

@@ -7,15 +7,15 @@ type: { type: Sequelize.STRING,
 defaultValue:'run'},
     distance: { type: Sequelize.FLOAT,
       },
-    weight: {
-    type: Sequelize.STRING,
-    },
+    // weight: {
+    // type: Sequelize.STRING,
+    // },
     time: {
       type: Sequelize.FLOAT,
-      },
-      reps: {
-        type: Sequelize.INTEGER,
-        }})
+      }})
+      // reps: {
+      //   type: Sequelize.INTEGER,
+      //   }})
 
 
 
