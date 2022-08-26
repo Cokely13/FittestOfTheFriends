@@ -1,45 +1,41 @@
 import React from "react";
 import { connect } from "react-redux";
-import {createEvent} from "../store/allEventsStore";
+import {createResult} from "../store/allResultsStore";
 import { Link, Redirect } from "react-router-dom";
 import { buttons, formInput, formLabel, formLastDiv, forms, formSubDiv, formTitle, maindiv1, maindiv2 } from "../styleClassNames";
-// import { motion } from "framer-motion";
 
-class CreateEvent extends React.Component {
+class CreateResult extends React.Component {
   constructor() {
     super();
     this.state = {
       type: "",
       distance: "",
-      // weight: "",
-      // time: "",
-      // reps: "",
+      time: "",
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange(result) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [result.target.name]: result.target.value,
     });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.props.createEvent({ ...this.state});
-    <Redirect to='/events' />
+  handleSubmit(result) {
+    result.preventDefault();
+    this.props.createResult({ ...this.state});
+    <Redirect to='/results' />
   }
 
   render() {
-    const { type, distance, weight, time, reps } = this.state;
+    const { type, distance, time} = this.state;
     const { handleSubmit } = this;
     return (
       //  className={maindiv1}>
         <div className={maindiv2}>
           <div>
-            <div className={formTitle}>Add Event</div>
+            <div className={formTitle}>Add Result</div>
           </div>
           <form className={forms} onSubmit={this.handleSubmit}>
               <div className={formSubDiv}>
@@ -53,18 +49,18 @@ class CreateEvent extends React.Component {
               {/* <div className={formSubDiv}>
                 <label className={formLabel} htmlFor="weight">Weight:</label>
                 <input className={formInput} name="weight" type='text' onChange={this.handleChange} value={weight} />
-              </div>
+              </div> */}
               <div className={formSubDiv}>
                 <label className={formLabel} htmlFor="time">Time:</label>
                 <input className={formInput} name="time" type='text' onChange={this.handleChange} value={time} />
               </div>
-              <div className={formSubDiv}>
+              {/* <div className={formSubDiv}>
                 <label className={formLabel} htmlFor="reps">Reps:</label>
                 <input className={formInput} name="reps" type='text' onChange={this.handleChange} value={reps} />
               </div> */}
               <div className={formLastDiv}>
                 <button className={buttons} type="submit">Submit</button>
-                <Link className={buttons} to="/events" >Cancel</Link>
+                <Link className={buttons} to="/results" >Cancel</Link>
               </div>
           </form>
         </div>
@@ -73,7 +69,7 @@ class CreateEvent extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch, {history}) => ({
-    createEvent: (event) => dispatch(createEvent(event, history)),
+    createResult: (result) => dispatch(createResult(result, history)),
   });
 
-export default connect(null, mapDispatchToProps)(CreateEvent);
+export default connect(null, mapDispatchToProps)(CreateResult);

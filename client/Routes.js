@@ -7,6 +7,7 @@ import Users from './components/Users'
 import Events from './components/Events';
 import CreateEvent from './components/CreateEvent';
 import Results from './components/Results';
+import CreateResults from './components/CreateResults';
 import {me} from './store'
 
 
@@ -28,8 +29,9 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/users" component={Users} />
             <Route exact path="/events" component={Events} />
-            <Route exact path="/events" component={CreateEvent} />
+            <Route exact path="/events/create" component={CreateEvent} />
             <Route exact path="/results" component={Results} />
+            <Route exact path="/results/create" component={CreateResults} />
             {/* <Route path="/home" component={Users} /> */}
             <Redirect to="/home" />
           </Switch>

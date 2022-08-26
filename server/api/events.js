@@ -52,13 +52,10 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // Add new car listing
-router.post("/", requireToken, async (req, res, next) => {
+router.post("/",async (req, res, next) => {
   try {
-    if (req.user.dataValues.admin) {
       res.status(201).send(await Event.create(req.body));
-    } else {
-      return res.status(403).send("You shall not pass!");
-    }
+
   } catch (error) {
     next(error);
   }

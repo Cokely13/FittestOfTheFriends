@@ -46,17 +46,19 @@ export const fetchEvents = () => {
 
 export const createEvent = (event, history) => {
   return async (dispatch) => {
-    const token = window.localStorage.getItem(TOKEN);
-    if (token) {
-      const { data } = await axios.post("/api/events", event, {
-        headers: {
-          authorization: token,
-        },
-      });
+    // const token = window.localStorage.getItem(TOKEN);
+    // if (token) {
+      const { data } = await axios.post("/api/events", event,
+      // {
+      //   headers: {
+      //     authorization: token,
+      //   },
+      // }
+      );
       dispatch(_createEvent(data));
       history.push('/events')
     }
-  };
+  // };
 };
 
 export const deleteEvent = (id) => {
