@@ -11,6 +11,8 @@ class CreateResult extends React.Component {
       type: "",
       distance: "",
       time: "",
+      eventId: "",
+      userId: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +31,7 @@ class CreateResult extends React.Component {
   }
 
   render() {
-    const { type, distance, time} = this.state;
+    const { type, distance, time, eventId, userId} = this.state;
     const { handleSubmit } = this;
     return (
       //  className={maindiv1}>
@@ -53,6 +55,14 @@ class CreateResult extends React.Component {
               <div className={formSubDiv}>
                 <label className={formLabel} htmlFor="time">Time:</label>
                 <input className={formInput} name="time" type='text' onChange={this.handleChange} value={time} />
+              </div>
+              <div className={formSubDiv}>
+                <label className={formLabel} htmlFor="eventId">EventId:</label>
+                <input className={formInput} name="eventId" type='text'  onChange={this.handleChange} value={eventId} />
+              </div>
+              <div className={formSubDiv}>
+                <label className={formLabel} htmlFor="userId">UserId:</label>
+                <input className={formInput} name="userId" type='text'  onChange={this.handleChange} value={userId} />
               </div>
               {/* <div className={formSubDiv}>
                 <label className={formLabel} htmlFor="reps">Reps:</label>

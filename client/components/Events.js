@@ -17,21 +17,23 @@ export class Events extends React.Component {
       <div>
       <div className="container">
         <div></div>
+        <div>EVENTS</div>
         {this.props.allEvents.map((event) => {
           console.log(event.id)
           return (
             <div className="event" key={event.id}>
-               <div>Events</div>
               <Link to={`/events/${event.id}`} key={event.id}>
                 <div key={event.id}>
-                  <h1 className="name">{event.type}</h1>
+                <h1 className="id"> Event ID: {event.id}</h1>
+                  <h1 className="name"> Type: {event.type}</h1>
+                  <h1 className="distance">Distance: {event.distance}</h1>
                 </div>
               </Link>
             </div>
           );
         })}
       </div>
-      <CreateEvent />
+      {/* <CreateEvent /> */}
       </div>
     );
   }

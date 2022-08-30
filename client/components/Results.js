@@ -12,26 +12,31 @@ export class Results extends React.Component {
     this.props.fetchResults();
   }
   render() {
-    console.log("PROPS", this.props.allResults)
+    const results = this.props.allResults
+    const sortedTime = results.sort((a, b) => {
+      return a.time - b.time;
+  });
+
+    console.log("Results", sortedTime)
     return (
       <div>
       <div className="container">
         <div>Results</div>
-        {this.props.allResults.map((result) => {
+        {sortedTime.map((result) => {
           return (
             <div className="result" key={result.id}>
               <Link to={`/results/${result.id}`} key={result.id}>
+                <div>
+                  <h1 className="eventId">EventId:{result.eventId}</h1>
+                </div>
+                <div>
+                  <h1 className="userId">UserId{result.userId}</h1>
+                </div>
                 <div key={result.id}>
-                <div>Distance</div>
-                  <h1 className="Distance">{result.distance}</h1>
+                  <h1 className="distance"> Distance: {result.distance}</h1>
                 </div>
                 <div>
-                <div>EventId</div>
-                  <h1 className="EventId">{result.eventId}</h1>
-                </div>
-                <div>
-                <div>UserId</div>
-                  <h1 className="userId">{result.userId}</h1>
+                  <h1 className="time">Time:{result.time}</h1>
                 </div>
               </Link>
             </div>
